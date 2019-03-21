@@ -1,4 +1,4 @@
-//
+/
 //  CodingChallengeTests.swift
 //  CodingChallengeTests
 //
@@ -13,19 +13,25 @@ class CodingChallengeTests: XCTestCase {
     
     //state any variables used for test
     var viewModel: ViewModel!
-
+    //var app = XCUIApplication()
+    //var searchTableViewCell: SearchTableViewCell!
+    
     override func setUp() {
         //initialize any objects that you may need for testing
         super.setUp()
+        // continueAfterFailure = false
+        //  app.launch()
         viewModel = ViewModel()
+        //  searchTableViewCell = SearchTableViewCell()
+        
     }
-
+    
     override func tearDown() {
         // de init or reset variables to initial state for each function
         viewModel = nil
         super.tearDown()
     }
-
+    
     func testContentCount() {
         //AAA - Arrange, Activate, Assert
         
@@ -38,7 +44,20 @@ class CodingChallengeTests: XCTestCase {
         //3. Asserts
         XCTAssertEqual(viewModel.artistLimit, 5)
     }
-
+    
+    func testAlbumCount() {
+        //AAA - Arrange, Activate, Assert
+        
+        //1. Arrange
+        viewModel.albumLimit = 7
+        
+        //2. Activate
+        viewModel.updateLimits()
+        
+        //3. Asserts
+        XCTAssertEqual(viewModel.albumLimit, 12)
+    }
+    
     func testServiceCall() {
         
         //1. Arrange
@@ -66,5 +85,26 @@ class CodingChallengeTests: XCTestCase {
             viewModel.getContent(with: "Kanye")
         }
     }
-
+    
+    //func testlabelInSearchViewController(){
+    //  let label = app.staticTexts["Artist"]
+    //XCTAssertEqual(label.exists, true)
+    //}
+    //    func testUpdatedData(){
+    //        var myartists = [Artist]()
+    //
+    //        let prom = expectation(description: "update data")
+    //
+    //        ContentService.shared.getArtists(search: "Snoop", limit: 10) { artist in
+    //            myartists = artist
+    //            prom.fulfill()
+    //        }
+    //        waitForExpectations(timeout: 3, handler: nil)
+    //
+    //        XCTAssertEqual(myartists.count , 0)
+    //
+    //        self.measure {
+    //            viewModel.getContent(with: "Katty")
+    //        }
+    //    }
 }
